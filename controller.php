@@ -70,7 +70,7 @@ class Controller {
 	static $memcache_documentation = "在浏览器里面像终端一样调用php memcache扩展里面的函数例如get";
 	public function memcache($token,$param=''){
 		do_debug($token);
-		$instance = new Redis();
+		$instance = new Memcache();
 		do_debug('memcache connect:'.$instance->connect('localhost'));
 		$return  = $this->do_command($token,$instance);
 		return $return;
