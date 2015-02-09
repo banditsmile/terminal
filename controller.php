@@ -81,16 +81,15 @@ class Controller {
 		$method = $input[0];
 		unset($input[0]);
 		$param = $input;
-		if($method == 'describe'){
+		if(in_array($method,array('describe','help'))){
 			if(is_array($param) and count($param)){
-				$return =  get_describe(strtolower(get_class($instance)),$param[0]);
+				$return =  get_describe(strtolower(get_class($instance)),current($param));
 			}else{
 				$return = 'please input a valid method name after describe';
 			}
 		}else{
 			try{
 				$return = call_user_func_array(array($instance,$method),$param);
-				do_debug('command output:'.$return);
 			}catch(Exception $e){
 				$return = $e->getMessage();
 				do_debug($return);

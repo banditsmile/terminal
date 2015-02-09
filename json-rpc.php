@@ -209,7 +209,7 @@ function handle_json_rpc($object) {
 }
 
 function do_debug($msg){
-	$log_path = dirname(__FILE__).'/../debug.log';
+	$log_path = dirname(__FILE__).'/debug.log';
 	$msg = is_string($msg) ? $msg : json_encode($msg);
 	$msg = date('Ymd H:i:s').'|'.$msg;
 	return file_put_contents($log_path,$msg.PHP_EOL,FILE_APPEND);
