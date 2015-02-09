@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSON-RPC Demo for JQuery Terminal Emulator</title>
+    <meta name="author" content="Jakub Jankiewicz - jcubic&#64;onet.pl"/>
+    <meta name="Description" content="Demonstration for JQuery Terminal Emulator using call automaticly JSON-RPC service (in php) with authentication."/>
+    <link rel="sitemap" type="application/xml" title="Sitemap" href=""/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <script src="../js/jquery-1.7.1.min.js"></script>
+    <script src="../js/jquery.mousewheel-min.js"></script>
+    <script src="../js/jquery.terminal-min.js"></script>
+    <link href="../css/jquery.terminal.css" rel="stylesheet"/>
+  </head>
+<body>
+<script>
+jQuery(document).ready(function($) {
+    $('body').terminal(function(command, term) {
+        if (command == 'foo') {
+            term.push(function(command) {
+                if (command.match(/y|yes/i)) {
+                    term.echo('execute your command here');
+                    term.pop();
+                } else if (command.match(/n|no/i)) {
+                    term.pop();
+                }
+            }, {
+                prompt: 'Are you sure? '
+            });
+        }
+    });
+});
+
+</script>
+</body>
